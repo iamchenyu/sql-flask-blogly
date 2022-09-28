@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Delete User{% endblock %} {% block
+content %}
+<div class="ui basic modal">
+  <div class="ui icon header">
+    <i class="user times icon"></i>
+    Delete User {{user.get_full_name()}}
+  </div>
+  <div class="ui center aligned container content">
+    <p>Are you sure you want to delete your user account?</p>
+  </div>
+  <form class="actions" action="/users/{{user.id}}/delete" method="POST">
+    <a class="ui red basic cancel button" href="/users/{{user.id}}">
+      <i class="remove icon"></i>
+      No
+    </a>
+    <button class="ui green ok inverted button" type="submit">
+      <i class="checkmark icon"></i>
+      Yes
+    </button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %}All Users{% endblock %} {% block
+content %}
+<h1>All Users</h1>
+<div class="ui huge middle aligned divided list">
+  {% for user in users %}
+  <div class="item">
+    <img class="ui avatar image" src="{{user.image_url}}" />
+    <div class="content">
+      <a class="header" href="/users/{{user.id}}">{{user.get_full_name()}}</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<a class="ui primary button" href="/users/new">Create New User</a>
+{% endblock %}
