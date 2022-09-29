@@ -1,7 +1,6 @@
 """Seeding files for sample users"""
 
 from models import db, User
-from app import app
 
 # Create all tables
 db.drop_all()

@@ -5,18 +5,14 @@ from flask import request
 def check_user_duplicate(new_user):
     all_users = User.get_all_users()
     for user in all_users:
-        if new_user.get_full_name().upper() == user.get_full_name().upper() and user.id != new_user.id:
+        if new_user.get_full_name.upper() == user.get_full_name.upper() and user.id != new_user.id:
             raise ValueError("The user already exists!")
 
 
 def create_user():
     [first_name, last_name, image_url] = get_inputs()
-    if image_url:
-        new_user = User(first_name=first_name,
-                        last_name=last_name, image_url=image_url)
-    else:
-        new_user = User(first_name=first_name,
-                        last_name=last_name)
+    new_user = User(first_name=first_name,
+                    last_name=last_name, image_url=image_url or None)
     return new_user
 
 

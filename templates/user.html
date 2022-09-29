@@ -1,13 +1,13 @@
-{% extends "base.html" %} {% block title %}{{user.get_full_name()}} Page{%
+{% extends "base.html" %} {% block title %}{{user.get_full_name}} Page{%
 endblock %} {% block content %}
-<h1>Page for {{user.get_full_name()}}</h1>
+<h1>Page for {{user.get_full_name}}</h1>
 <div class="ui items">
   <div class="item">
     <a class="ui tiny image">
       <img src="{{user.image_url}}" />
     </a>
     <div class="content">
-      <a class="header">{{user.get_full_name()}}</a>
+      <a class="header">{{user.get_full_name}}</a>
       <div class="description">
         <p>{{user.greet()}}</p>
       </div>
