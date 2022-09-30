@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}Homepage{% endblock %} {% block
+content %}
+<h1>WELCOME TO BLOGLY!</h1>
+{% for post in posts %}
+<h3><a href="/posts/{{post.id}}">{{post.title}}</a></h3>
+<p>{{post.content}}</p>
+<div class="ui grid two column">
+  <div class="row">
+    <div class="column">
+      <a href="/users/{{post.user_id}}">
+        <img class="ui avatar image" src="{{post.user.image_url}}" />
+        {{post.user.first_name}}</a
+      >
+    </div>
+    <div class="right aligned column">
+      <p class="meta">
+        Created at {{post.created_at.strftime("%B %d %Y %H:%M:%S")}}
+      </p>
+    </div>
+  </div>
+</div>
+<div class="ui section divider"></div>
+{% endfor %} {% endblock %}

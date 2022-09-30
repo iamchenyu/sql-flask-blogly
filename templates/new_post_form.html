@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %}New Post Form{% endblock %} {% block
+content %}
+<h1>Create New Post</h1>
+<form class="ui form" action="/users/{{user.id}}/posts/new" method="POST">
+  <div class="field">
+    <label>Ttile</label>
+    <input type="text" name="title" placeholder="Post Title" />
+  </div>
+  <div class="field">
+    <label>Content</label>
+    <textarea rows="3" name="content" placeholder="Post Content"></textarea>
+  </div>
+  <a class="ui button" href="/users/{{user.id}}">Cancel</a>
+  <button class="ui primary button" type="submit">Submit</button>
+</form>
+{% endblock %}

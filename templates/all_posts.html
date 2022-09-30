@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}All Posts{% endblock %} {% block
+content %}
+<h1>All Posts</h1>
+
+{% for post in posts %}
+
+<div class="ui grid">
+  <div class="row">
+    <div class="two wide column">
+      <img src="{{post.user.image_url}}" class="ui large image" />
+    </div>
+    <div class="fourteen wide column">
+      <div class="ui grid content">
+        <a class="seven wide column author" href="/posts/{{post.id}}"
+          >{{post.title}}</a
+        >
+
+        <a class="three wide column date" href="/users/{{post.user_id}}"
+          >@{{post.user.get_full_name}}</a
+        >
+        <div class="six wide column right aligned">
+          Created at {{post.created_at.strftime("%B %d %Y %H:%M:%S")}}
+        </div>
+
+        <div class="text centered">{{post.content}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui section divider"></div>
+
+{% endfor %} {% endblock %}

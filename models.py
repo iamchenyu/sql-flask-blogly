@@ -2,6 +2,7 @@
 
 # Set Up
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 
 db = SQLAlchemy()
 
@@ -36,3 +37,28 @@ class User(db.Model):
 
     def greet(self):
         return f"Hi, My name is {self.get_full_name}! Nice to meet you!"
+
+
+class Post(db.Model):
+    __tablename__ = "posts"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.Text, nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True),
+                           nullable=False, server_default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    user = db.relationship("User", backref=db.backref("posts", cascade="all, delete-orphan")
+                           )
+
+    @classmethod
+    def list_all_posts(cls):
+        return cls.query.order_by(cls.created_at.desc())
+
+    @classmethod
+    def list_all_posts_by_user(cls, user):
+        return cls.query.filter(cls.user == user).all()
+
+    def __repr__(self):
+        return f"Post {self.id} Title - '{self.title}' Content - '{self.content}' Created_at - '{self.created_at}' by User - '{self.user}' "

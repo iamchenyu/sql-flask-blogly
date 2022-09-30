@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block title %}Post Details{% endblock %} {% block
+content %}
+<h1>Post Details</h1>
+<div class="ui fluid card">
+  <div class="content">
+    <div class="header">{{post.title}}</div>
+    <div class="meta">
+      <span class="category"
+        >Created at {{post.created_at.strftime("%B %d %Y %H:%M:%S")}}</span
+      >
+    </div>
+    <div class="description">
+      <p>{{post.content}}</p>
+    </div>
+  </div>
+  <div class="extra content">
+    <a class="tiny ui blue button" href="/posts/{{post.id}}/edit">Edit</a>
+    <a class="tiny ui red button" href="/posts/{{post.id}}/delete">Delete</a>
+    <a href="/users/{{post.user_id}}">
+      <div class="right floated author">
+        <img class="ui avatar image" src="{{post.user.image_url}}" />
+        {{post.user.first_name}}
+      </div>
+    </a>
+  </div>
+</div>
+<div class="ui hidden divider"></div>
+<div>
+  <a class="ui button" href="/">Homepage</a>
+</div>
+{% endblock %}

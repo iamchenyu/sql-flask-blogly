@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Delete Post{% endblock %} {% block
+content %}
+<div class="ui basic modal">
+  <div class="ui icon header">
+    <i class="user times icon"></i>
+    Delete Post - {{post.title}}
+  </div>
+  <div class="ui center aligned container content">
+    <p>Are you sure you want to delete your post?</p>
+  </div>
+  <form class="actions" action="/posts/{{post.id}}/delete" method="POST">
+    <a class="ui red basic cancel button" href="/posts/{{post.id}}">
+      <i class="remove icon"></i>
+      No
+    </a>
+    <button class="ui green ok inverted button" type="submit">
+      <i class="checkmark icon"></i>
+      Yes
+    </button>
+  </form>
+</div>
+{% endblock %}

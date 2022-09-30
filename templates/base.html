@@ -11,6 +11,11 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body class="ui container">
+    <div class="ui three item menu">
+      <a class="item" href="/">Homepage</a>
+      <a class="item" href="/posts">All Posts</a>
+      <a class="item" href="/users">All Users</a>
+    </div>
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}
     <section>
