@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}Edit {{user.first_name}}'s Page{%
 endblock %} {% block content %}
-<h1>Edit User - {{user.get_full_name}}</h1>
+<h1>Edit User - {{user.full_name}}</h1>
 <form class="ui form" action="/users/{{user.id}}/edit" method="POST">
   <div class="field">
     <label>First Name</label>

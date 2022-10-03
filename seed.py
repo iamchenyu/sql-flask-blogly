@@ -1,6 +1,6 @@
 """Seeding files for sample users"""
 
-from models import db, User, Post
+from models import db, User, Post, Tag, PostTag
 from app import app
 
 # Create all tables
@@ -49,4 +49,35 @@ db.session.add(post3)
 db.session.add(post4)
 db.session.add(post5)
 
+db.session.commit()
+
+# Add Tags
+history = Tag(name="history")
+english = Tag(name="english")
+mystery = Tag(name="mystery")
+american = Tag(name="american")
+crime = Tag(name="crime")
+
+db.session.add(history)
+db.session.add(english)
+db.session.add(mystery)
+db.session.add(american)
+db.session.add(crime)
+
+db.session.commit()
+
+# Add Posts and Tags Relationships
+detail1 = PostTag(post_id=1, tag_id=1)
+detail2 = PostTag(post_id=1, tag_id=4)
+detail3 = PostTag(post_id=2, tag_id=2)
+detail4 = PostTag(post_id=3, tag_id=1)
+detail5 = PostTag(post_id=4, tag_id=3)
+detail6 = PostTag(post_id=4, tag_id=2)
+detail7 = PostTag(post_id=4, tag_id=4)
+detail8 = PostTag(post_id=5, tag_id=5)
+detail9 = PostTag(post_id=5, tag_id=1)
+detail10 = PostTag(post_id=1, tag_id=5)
+
+db.session.add_all(
+    [detail1, detail2, detail3, detail4, detail5, detail6, detail7, detail8, detail9, detail10])
 db.session.commit()

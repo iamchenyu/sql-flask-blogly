@@ -1,13 +1,13 @@
-{% extends "base.html" %} {% block title %}{{user.get_full_name}}'s Page{%
-endblock %} {% block content %}
-<h1>Page for {{user.get_full_name}}</h1>
+{% extends "base.html" %} {% block title %}{{user.full_name}}'s Page{% endblock
+%} {% block content %}
+<h1>Page for {{user.full_name}}</h1>
 <div class="ui items">
   <div class="item">
     <div class="image">
       <img src="{{user.image_url}}" />
     </div>
     <div class="content">
-      <h2>{{user.get_full_name}}</h2>
+      <h2>{{user.full_name}}</h2>
       <div class="meta">
         <span>{{user.greet()}}</span>
       </div>
@@ -15,7 +15,16 @@ endblock %} {% block content %}
         <p class="ui medium header">Posts</p>
         <ul class="ui list">
           {% for post in posts%}
-          <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+          <li>
+            <a href="/posts/{{post.id}}" style="margin-right: 10px"
+              >{{post.title}}</a
+            >
+            {% for tag in post.tags %}
+            <a class="ui orange tiny label" href="/tags/{{tag.id}}"
+              >{{tag.name}}</a
+            >
+            {% endfor %}
+          </li>
           {% endfor %}
         </ul>
         <a class="ui primary button" href="/users/{{user.id}}/posts/new"
@@ -26,7 +35,7 @@ endblock %} {% block content %}
   </div>
 </div>
 <div class="extra">
-  <a class="tiny ui blue button" href="/users/{{user.id}}/edit">Edit</a>
+  <a class="tiny ui primary button" href="/users/{{user.id}}/edit">Edit</a>
   <a class="tiny ui red button" href="/users/{{user.id}}/delete">Delete</a>
   <a class="ui right floated button" href="/users">
     All Users <i class="right chevron icon"></i>

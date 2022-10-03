@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block title %}Tags{% endblock %} {% block content
+%}
+<h1><i class="hashtag icon"></i>{{tag.name}}</h1>
+{% for post in posts %}
+
+<div class="ui grid">
+  <div class="row">
+    <div class="two wide column">
+      <img src="{{post.user.image_url}}" class="ui large image" />
+    </div>
+    <div class="fourteen wide column">
+      <div class="ui grid content">
+        <div class="nine wide column">
+          <a class="author" style="margin-right: 10px" href="/posts/{{post.id}}"
+            >{{post.title}}</a
+          >
+          {% for tag in post.tags %}
+          <a class="ui orange tiny label" href="/tags/{{tag.id}}"
+            >{{tag.name}}</a
+          >
+          {% endfor %}
+        </div>
+        <a class="three wide column date" href="/users/{{post.user_id}}"
+          >@{{post.user.full_name}}</a
+        >
+        <div class="four wide column right aligned">
+          Created at {{post.formatted_datetime}}
+        </div>
+
+        <div class="text centered">{{post.content}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui section divider"></div>
+
+{% endfor %}
+<div>
+  <a class="ui primary button" href="/tags/{{tag.id}}/edit">Edit</a>
+  <a class="ui red button" href="/tags/{{tag.id}}/delete">Delete</a>
+</div>
+{% endblock %}

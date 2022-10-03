@@ -1,8 +1,16 @@
 {% extends "base.html" %} {% block title %}Homepage{% endblock %} {% block
 content %}
 <h1>WELCOME TO BLOGLY!</h1>
+<div class="ui section hidden divider"></div>
 {% for post in posts %}
-<h3><a href="/posts/{{post.id}}">{{post.title}}</a></h3>
+<a
+  href="/posts/{{post.id}}"
+  style="font-size: 1.5rem; font-weight: bold; margin-right: 10px"
+  >{{post.title}}</a
+>
+{% for tag in post.tags %}
+<a class="ui orange tiny label" href="/tags/{{tag.id}}">{{tag.name}}</a>
+{% endfor %}
 <p>{{post.content}}</p>
 <div class="ui grid two column">
   <div class="row">
@@ -13,11 +21,10 @@ content %}
       >
     </div>
     <div class="right aligned column">
-      <p class="meta">
-        Created at {{post.created_at.strftime("%B %d %Y %H:%M:%S")}}
-      </p>
+      <p class="meta">Created at {{post.formatted_datetime}}</p>
     </div>
   </div>
 </div>
+
 <div class="ui section divider"></div>
 {% endfor %} {% endblock %}

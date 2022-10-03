@@ -10,6 +10,17 @@ content %}
     <label>Content</label>
     <textarea name="content" rows="3">{{post.content}}</textarea>
   </div>
+  <p style="font-weight: bold">Please choose related tags:</p>
+  {% for tag in tags %}
+  <div class="inline field">
+    <div class="ui checkbox">
+      <input type="checkbox" name="tag" value="{{tag.id}}" {% for t in post.tags
+      %} {{"checked" if t.id == tag.id}} {% endfor %} />
+      <label>{{tag.name}}</label>
+    </div>
+  </div>
+
+  {% endfor %}
   <a class="ui button" href="/posts/{{post.id}}">Cancel</a>
   <button class="ui primary button" type="submit">Submit</button>
 </form>

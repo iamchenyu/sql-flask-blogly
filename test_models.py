@@ -34,10 +34,10 @@ class UserModelTestCase(TestCase):
 
         self.assertEquals(User.get_all_users(), [daniel, stevie])
 
-    def test_get_full_name(self):
+    def test_full_name(self):
         daniel = User(first_name="Daniel", last_name="Louise",
                       image_url="https://semantic-ui.com/images/avatar/small/daniel.jpg")
-        self.assertEquals(daniel.get_full_name(), "Daniel Louise")
+        self.assertEquals(daniel.full_name(), "Daniel Louise")
 
     def test_greet(self):
         daniel = User(first_name="Daniel", last_name="Louise",

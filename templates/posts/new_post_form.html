@@ -10,6 +10,16 @@ content %}
     <label>Content</label>
     <textarea rows="3" name="content" placeholder="Post Content"></textarea>
   </div>
+  <p style="font-weight: bold">Please choose related tags:</p>
+  {% for tag in tags %}
+  <div class="inline field">
+    <div class="ui checkbox">
+      <input type="checkbox" name="tag" value="{{tag.id}}" />
+      <label>{{tag.name}}</label>
+    </div>
+  </div>
+
+  {% endfor %}
   <a class="ui button" href="/users/{{user.id}}">Cancel</a>
   <button class="ui primary button" type="submit">Submit</button>
 </form>
