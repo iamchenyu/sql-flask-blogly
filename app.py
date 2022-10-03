@@ -5,14 +5,13 @@ from flask import Flask, request, render_template, redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post, Tag, PostTag
 from helper import check_duplicate_tag, check_user_duplicate, create_user, update_user, update_post, create_post, create_tag, update_tag
-# from decouple import config
+from decouple import config
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-# app.config['SECRET_KEY'] = config("SECRET_KEY")
-app.config['SECRET_KEY'] = "temp_key"
+app.config['SECRET_KEY'] = config("SECRET_KEY")
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
